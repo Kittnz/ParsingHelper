@@ -93,10 +93,18 @@ namespace ParsingHelper
         private void LoadAllSniffsInDirectory()
         {
             _sniffsPerBuild.Clear();
-            foreach (string file in Directory.EnumerateFiles(txtSniffsDirectory.Text, "*.pkt", SearchOption.AllDirectories))
+
+            DirectoryInfo di = new DirectoryInfo(txtSniffsDirectory.Text);
+            FileSystemInfo[] files = di.GetFileSystemInfos();
+            var orderedFiles = files.Where(f => f.Extension == ".pkt")
+                                    .OrderBy(f => f.LastWriteTime)
+                                    .ToList();
+
+            foreach (var file in orderedFiles)
             {
-                AddSniffToList(ReadSniffHeader(file), file);
+                AddSniffToList(ReadSniffHeader(file.FullName), file.FullName);
             }
+
             ShowSniffsInListView();
         }
         private void txtSniffsDirectory_Leave(object sender, EventArgs e)
@@ -297,24 +305,12 @@ namespace ParsingHelper
             batchContents += "cd \"" + txtSniffsDirectory.Text + "\"" + Environment.NewLine;
 
             string wppPath = "\"" + Path.Combine(txtWppDirectory.Text, "WowPacketParser.exe") + "\"";
-            int counter = 0;
 
             foreach (var file in files)
             {
                 string shortFilePath = file.Replace(txtSniffsDirectory.Text + "\\", "");
-
-                if (counter > 2)
-                {
-                    batchContents += "timeout 30" + Environment.NewLine;
-                    counter = 0;
-                }
-                else
-                {
-                    batchContents += "start \"" + Path.GetFileName(file) + "\" ";
-                    counter++;
-                }
-
                 batchContents += wppPath + " \"" + shortFilePath + "\"" + Environment.NewLine;
+                batchContents += "timeout 1" + Environment.NewLine;
             }
 
             batchContents += "exit";

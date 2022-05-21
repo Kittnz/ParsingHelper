@@ -35,11 +35,11 @@
             this.lblSniffsDirectory = new System.Windows.Forms.Label();
             this.txtSniffsDirectory = new System.Windows.Forms.TextBox();
             this.listView1 = new System.Windows.Forms.ListView();
+            this.clmVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnFileCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.lblMode = new System.Windows.Forms.Label();
             this.cmbMode = new System.Windows.Forms.ComboBox();
             this.btnParse = new System.Windows.Forms.Button();
-            this.clmVersion = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
-            this.columnFileCount = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.btnReverseSelection = new System.Windows.Forms.Button();
             this.txtName = new System.Windows.Forms.TextBox();
             this.lblName = new System.Windows.Forms.Label();
@@ -106,6 +106,7 @@
             this.columnFileCount});
             this.listView1.FullRowSelect = true;
             this.listView1.GridLines = true;
+            this.listView1.HideSelection = false;
             this.listView1.Location = new System.Drawing.Point(12, 101);
             this.listView1.Name = "listView1";
             this.listView1.ShowItemToolTips = true;
@@ -113,6 +114,16 @@
             this.listView1.TabIndex = 6;
             this.listView1.UseCompatibleStateImageBehavior = false;
             this.listView1.View = System.Windows.Forms.View.Details;
+            // 
+            // clmVersion
+            // 
+            this.clmVersion.Text = "Version";
+            this.clmVersion.Width = 300;
+            // 
+            // columnFileCount
+            // 
+            this.columnFileCount.Text = "File Count";
+            this.columnFileCount.Width = 130;
             // 
             // lblMode
             // 
@@ -144,16 +155,6 @@
             this.btnParse.Text = "Parse";
             this.btnParse.UseVisualStyleBackColor = true;
             this.btnParse.Click += new System.EventHandler(this.btnParse_Click);
-            // 
-            // clmVersion
-            // 
-            this.clmVersion.Text = "Version";
-            this.clmVersion.Width = 300;
-            // 
-            // columnFileCount
-            // 
-            this.columnFileCount.Text = "File Count";
-            this.columnFileCount.Width = 130;
             // 
             // btnReverseSelection
             // 
@@ -202,7 +203,7 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MaximizeBox = false;
             this.Name = "Form1";
-            this.Text = "Parsing Helper for Handicapped People";
+            this.Text = "Parsing Helper";
             this.ResumeLayout(false);
             this.PerformLayout();
 
