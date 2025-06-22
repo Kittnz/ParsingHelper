@@ -44,11 +44,11 @@ namespace ParsingHelper
         Dictionary<uint, List<string>> _sniffsPerBuild = new Dictionary<uint, List<string>>();
         private void AddSniffToList(uint build, string sniff)
         {
-            if (build == 0)
+            /*if (build == 0)
             {
                 MessageBox.Show("Skipping file with unknown build:\r\n" + sniff);
                 return;
-            }
+            }*/
 
             if (_sniffsPerBuild.ContainsKey(build))
             {
